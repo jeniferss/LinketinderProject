@@ -4,7 +4,7 @@ import validators.UserInput
 
 abstract class InstanceHandler {
     Integer generateInstanceId(Map<Integer, ?> instanceList) {
-        return Collections.max(instanceList.keySet()) + 1
+        return instanceList.size() > 1 ? Collections.max(instanceList.keySet()) + 1 : 1
     }
 
     abstract Map<String, ?> readUserInputAndCreateInstanceMap(Map<Integer, ?> instanceList, List<String> allowedSkills)

@@ -2,11 +2,15 @@ package handlers
 
 import model.Candidate
 import model.Company
+import model.Job
+import model.Like
 import validators.UserInput
 
 class DataHandler {
     Map<Integer, Candidate> candidates = [:]
     Map<Integer, Company> companies = [:]
+    Map<Integer, Job> jobs = [:]
+    Map<Integer, Like> likes = [:]
 
     void generateCompanyMockData(UserInput validator, CompanyHandler companyHandler, List<String> allowedSkills) {
         for (i in 0..<5) {
@@ -44,12 +48,33 @@ class DataHandler {
 
     }
 
+    void generateJobMockData(UserInput validator, JobHandler jobHandler, List<String> allowedSkills) {
+        for (i in 0..<5) {
+            Map jobMap = [:]
+            jobMap["id"] = i + 1
+            jobMap["name"] = "Vaga ${i}"
+            jobMap["description"] = "Descricao do Vaga ${i}"
+            jobMap["company"] = companies.get(i+1)
+
+            jobHandler.createInstance(validator, jobMap, jobs, allowedSkills)
+        }
+
+    }
+
     Map<Integer, Candidate> getCandidates() {
         return candidates
     }
 
     Map<Integer, Company> getCompanies() {
         return companies
+    }
+
+    Map<Integer, Job> getJobs() {
+        return jobs
+    }
+
+    Map<Integer, Like> getLikes() {
+        return likes
     }
 
 }
