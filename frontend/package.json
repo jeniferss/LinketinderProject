@@ -9,6 +9,7 @@
     "chart.js": "^1.1.1",
     "html-loader": "^4.2.0",
     "live-server": "^1.2.2",
+    "plotly.js-dist-min": "^2.26.0",
     "ts-loader": "^9.4.4",
     "typescript": "^5.2.2",
     "webpack-cli": "^5.1.4"

@@ -6,6 +6,8 @@ import COMPANIES from "../../mocks/companies";
 import IJob from "../../interfaces/iJob";
 import JOBS from "../../mocks/jobs";
 
+var Plotly = require("plotly.js-dist-min");
+
 const loadProfile = (person: IPerson) => {
   const name = document.getElementById("cname");
   name.innerHTML = person.name;
@@ -32,6 +34,28 @@ const loadProfile = (person: IPerson) => {
 const loadGraph = () => {
   const stats = document.getElementById("stats");
   stats.style.visibility = "visible";
+
+  const xArray = [];
+  const yArray = [];
+
+  for (let skill in CANDIDATES_BY_SKILL) {
+    yArray.push(CANDIDATES_BY_SKILL[skill]);
+    xArray.push(skill);
+  }
+
+  const data = [
+    {
+      x: xArray,
+      y: yArray,
+      type: "bar",
+      orientation: "v",
+      marker: { color: "#f96126" },
+    },
+  ];
+
+  const layout = { title: "Candidatos por Habilidades" };
+
+  Plotly.newPlot(stats, data, layout, { displayModeBar: false });
 };
 
 const isJob = (obj: any): obj is IJob => {
