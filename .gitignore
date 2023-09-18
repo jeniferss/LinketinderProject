@@ -30,3 +30,7 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+# NodeJS
+frontend/node_modules/
+frontend/dist/

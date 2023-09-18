@@ -1,4 +1,5 @@
 # Projeto Linketinder
+![img.png](images/img.png)
 
 The project's goal is to meet the need for a more practical and effective way to identify employees with valuable skills
 for a company. The "Linketinder" aims to combine the matching functionality of Tinder with the individual skills section
@@ -43,9 +44,14 @@ create a "like" object with the "user" and "job."
 A list of technologies used within the project:
 
 * [Groovy](http://www.groovy-lang.org): Version 4.0.14
+* [NodeJS](https://nodejs.org/en): Version 18.17.1
+* [WebPack](https://webpack.js.org)
+* [HTML](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
+* [CSS](https://developer.mozilla.org/pt-BR/docs/Learn/Getting_started_with_the_web/CSS_basics)
+* [Bootstrap](https://getbootstrap.com): Version: 5.3.2
+* [DiceBear](https://www.dicebear.com)
 
 ## Installation
-
 ***
 
 ```bash
@@ -53,12 +59,22 @@ $ git clone git@github.com:jeniferss/LinketinderProject.git
 ```
 
 ## Running
-
 ***
+### Backend
 
 ```bash
 $ cd src
 $ groovy Main
+```
+
+### Frontend
+```bash
+$ cd frontend
+npm i -g live-server
+npm i --save-dev
+npm run build
+
+# Access http://127.0.0.1:8080/src/app.html
 ```
 
 ## Testing
