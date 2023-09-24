@@ -55,6 +55,43 @@ class PersonFormHandler {
       : Math.max(...this.personList.map((person) => person.id)) + 1;
   }
 
+  isFormValid(person: ICandidate | ICompany): boolean {
+      const hasNull = Object.values(person).some((property) => property === null);
+
+      const emailExpression: RegExp =
+        /^[a-z\.\_\-]+[\.\_\-a-z0-9]+@[a-z]+(\.[a-z]{1,3}){1,2}$/;
+      const isEmailValid = emailExpression.test(person.email);
+
+      const stateExpression: RegExp = /[A-Z]{2}/i;
+      const isStateValid =
+        this.personType === "candidate"
+          ? true
+          : stateExpression.test(person.state);
+
+      const zipcodeExpression: RegExp = /(?!(\d)\1)\d{8}/;
+      const isZipcodeValid = zipcodeExpression.test(person.zipcode);
+
+      const documentExpression: RegExp =
+        this.personType === "candidate" ? /(?!(\d)\1)\d{11}/ : /(?!(\d)\1)\d{14}/;
+      const isDocumentValid = documentExpression.test(
+        this.personType === "candidate"
+          ? (person as ICandidate).cpf
+          : (person as ICompany).cnpj
+      );
+
+      const nameExpression: RegExp = /[A-Z]+[a-z]+/;
+      const isNameValid = nameExpression.test(person.name);
+
+      return (
+        !hasNull &&
+        isNameValid &&
+        isDocumentValid &&
+        isEmailValid &&
+        isZipcodeValid &&
+        isStateValid
+      );
+  }
+
   addFormListener() {
     const alertHandler = new AlertHandler();
 
@@ -119,11 +156,9 @@ class PersonFormHandler {
     registerButton.addEventListener("click", () => {
       this.newPerson.id = this.generateID();
 
-      const hasNull = Object.values(this.newPerson).some(
-        (property) => property === null
-      );
+      const isValid = this.isFormValid(this.newPerson);
 
-      if (hasNull) {
+      if (!isValid) {
         alertHandler.show({
           type: "danger",
           message: `Falha ao criar ${
