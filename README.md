@@ -38,6 +38,9 @@ Initially, a Minimum Viable Product (MVP) of the software will be implemented, u
 has the "company" and "user" fields filled in. If yes, only the "job" field is updated; otherwise, 
 create a "like" object with the "user" and "job."
 
+* Database Design:
+![img.png](images/db.png)
+
 ## Technologies
 
 ***
@@ -50,6 +53,7 @@ A list of technologies used within the project:
 * [CSS](https://developer.mozilla.org/pt-BR/docs/Learn/Getting_started_with_the_web/CSS_basics)
 * [Bootstrap](https://getbootstrap.com): Version: 5.3.2
 * [DiceBear](https://www.dicebear.com)
+* [Diagrams](https://app.diagrams.net)
 
 ## Installation
 ***
